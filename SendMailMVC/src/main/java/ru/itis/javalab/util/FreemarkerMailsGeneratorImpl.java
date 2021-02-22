@@ -25,8 +25,10 @@ public class FreemarkerMailsGeneratorImpl implements MailsGenerator {
     @Override
     public String getMailForConfirm(String serverUrl, String code) {
         Template confirmMailTemplate;
+        configuration.setDefaultEncoding("UTF-8");
         try {
-            confirmMailTemplate = configuration.getTemplate("mails/confirm_mail.ftlh");
+            confirmMailTemplate = configuration.getTemplate("mails/confirm_mail.ftl");
+            confirmMailTemplate.setOutputEncoding("UTF-8");
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

@@ -15,6 +15,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.ui.freemarker.SpringTemplateLoader;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -76,14 +78,23 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public freemarker.template.Configuration configuration() {
-        freemarker.template.Configuration configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_30);
-        configuration.setDefaultEncoding("UTF-8");
-        configuration.setTemplateLoader(
-                new SpringTemplateLoader(new ClassRelativeResourceLoader(this.getClass()),
-                        "/"));
-        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        return configuration;
+    public FreeMarkerViewResolver freeMarkerViewResolver() {
+        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+        resolver.setPrefix("");
+        resolver.setSuffix(".ftl");
+        resolver.setContentType("text/html;charset=UTF-8");
+        return resolver;
     }
 
+    @Bean
+    public freemarker.template.Configuration configuration() {
+        return freeMarkerConfigurer().getConfiguration();
+    }
+
+    @Bean
+    public FreeMarkerConfigurer freeMarkerConfigurer() {
+        FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
+        configurer.setTemplateLoaderPath("WEB-INF/views/templates/");
+        return configurer;
+    }
 }

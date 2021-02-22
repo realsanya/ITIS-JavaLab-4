@@ -1,5 +1,6 @@
 package ru.itis.javalab.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,6 +16,12 @@ public class EmailUtilImpl implements EmailUtil {
     private JavaMailSender javaMailSender;
 
     private ExecutorService executorService;
+
+    @Autowired
+    public EmailUtilImpl(JavaMailSender javaMailSender, ExecutorService executorService) {
+        this.javaMailSender = javaMailSender;
+        this.executorService = executorService;
+    }
 
     @Override
     public void sendMail(Email email) {
