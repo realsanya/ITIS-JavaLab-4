@@ -37,12 +37,12 @@ public class SignUpServiceImpl implements SignUpService {
         User newUser = User.builder()
                 .email(form.getEmail())
                 .password(form.getPassword())
-                .confirmCode(UUID.randomUUID().toString())
+                .confirmCode(UUID.randomUUID())
                 .build();
 
         usersRepository.save(newUser);
 
-        String confirmMail = mailsGenerator.getMailForConfirm(serverUrl, newUser.getConfirmCode());
+        String confirmMail = mailsGenerator.getMailForConfirm(serverUrl, newUser.getConfirmCode().toString());
 
         Email email = Email.builder()
                 .from(from)

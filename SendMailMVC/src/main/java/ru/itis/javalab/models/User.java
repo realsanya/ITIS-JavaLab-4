@@ -4,33 +4,36 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
+import java.util.UUID;
 
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "account")
 public class User {
-    @javax.persistence.Id
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String email;
     private String password;
+    private UUID confirmCode;
 
-    @Enumerated(value = EnumType.STRING)
-    private State state;
-
-    private String confirmCode;
+    @Builder.Default
+    private State state = State.NOT_CONFIRMED;
 
     public enum State {
-        CONFIRMED, NOT_CONFIRMED
+        CONFIRMED("CONFIRMED"),
+        NOT_CONFIRMED("NOT_CONFIRMED");
+
+        private final String state;
+
+        State(String state) {
+            this.state = state;
+        }
+
+        public String getState() {
+            return state;
+        }
     }
 }
 
