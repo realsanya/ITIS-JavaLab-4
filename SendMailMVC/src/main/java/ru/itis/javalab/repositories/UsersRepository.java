@@ -4,6 +4,5 @@ import ru.itis.javalab.models.User;
 
 public interface UsersRepository {
     boolean save(User user);
-
 }
 
