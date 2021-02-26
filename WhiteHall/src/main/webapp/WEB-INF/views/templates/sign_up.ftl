@@ -8,7 +8,7 @@
             </div>
 
             <div class="container" style="padding-top: 40px; padding-bottom: 100px">
-                <form action="/register" method="post" autocomplete="off">
+                <form action="/signUp" method="post" autocomplete="off">
                     <div class="offset-3 col-md-6">
                         <div class="row justify-content-center">
                             <input class="login-input" type="text" name="first_name" placeholder="Фамилия"/>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="row justify-content-center" style="padding-top: 40px">
-                            <button class="register-button">
+                            <button type="submit" class="register-button">
                                 Зарегистрироваться <img src="/static/assets/img/click.png" style="padding-left: 15px"/>
                             </button>
                         </div>

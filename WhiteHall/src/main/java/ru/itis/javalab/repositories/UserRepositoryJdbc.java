@@ -12,17 +12,14 @@ import java.util.List;
 
 @Repository
 public class UserRepositoryJdbc implements UserRepository {
-    //TODO добавить image
-    private DataSource dataSource;
-    private JdbcTemplate template;
-    private ImageService imageService;
+    private final JdbcTemplate template;
+    private ImageService imageService = null;
 
     //language=SQL
     private final String SQL_SELECT_ALL_BY_EMAIL = "SELECT * FROM user WHERE email=?";
 
     //language=SQL
-    private final String SQL_CREATE = "INSERT INTO user (first_name, last_name, email, password, image_id) VALUES (?, ?, ?, ?, ?)";
-
+    private final String SQL_CREATE = "INSERT INTO user (first_name, last_name, email, password, image_id, state, confirm_code) VALUES (?, ?, ?, ?, ?, ?, ?)";
     //language=SQL
     final String SQL_DELETE = "DELETE FROM user WHERE id= ?";
 
@@ -32,8 +29,13 @@ public class UserRepositoryJdbc implements UserRepository {
     //language=SQL
     private final String SQL_SELECT_ALL = "SELECT * FROM user";
 
+    public UserRepositoryJdbc(DataSource dataSource, ImageService imageService) {
+        this.template = new JdbcTemplate(dataSource);
+        this.imageService = imageService;
+    }
+
     private RowMapper<User> userRowMapper = (row, i) -> User.builder()
-            .id(row.getInt("id"))
+            .id(row.getLong("id"))
             .first_name(row.getString("first_name"))
             .last_name(row.getString("last_name"))
             .email(row.getString("email"))
@@ -41,20 +43,23 @@ public class UserRepositoryJdbc implements UserRepository {
             .image_id(imageService.getImage(row.getInt("image_id")))
             .build();
 
-    public UserRepositoryJdbc(DataSource dataSource, ImageService imageService) {
-        this.dataSource = dataSource;
-        this.template = new JdbcTemplate(dataSource);
-        this.imageService = imageService;
-    }
 
     @Override
-    public void save(User user) {
+    public boolean save(User user) {
         System.out.println(user.getFirst_name() + user.getLast_name() + user.getEmail() + user.getPassword());
-        template.update(SQL_CREATE, user.getFirst_name(),
-                user.getLast_name(),
-                user.getEmail(),
-                user.getPassword(),
-                user.getImage_id().getId());
+        try {
+            template.update(SQL_CREATE,
+                    user.getFirst_name(),
+                    user.getLast_name(),
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getImage_id().getId(),
+                    user.getState(),
+                    user.getConfirmCode());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -64,7 +69,7 @@ public class UserRepositoryJdbc implements UserRepository {
 
 
     @Override
-    public User findById(Integer id) {
+    public User findById(Long id) {
         List<User> users = template.query(SQL_SELECT_BY_ID, userRowMapper, id);
         return !users.isEmpty() ? users.get(0) : null;
     }

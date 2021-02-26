@@ -46,8 +46,9 @@ public class HallRepositoryJdbc implements HallRepository {
     }
 
     @Override
-    public void save(Hall hall) {
+    public boolean save(Hall hall) {
         template.update(SQL_CREATE, hall.getName(), hall.getCost());
+        return true; //TODO
     }
 
     @Override

@@ -18,7 +18,7 @@
                         </div>
                         <div class="row justify-content-center" style="padding-top: 40px">
                             <div>Еще не зарегистрированы?</div>
-                            <a href="/register"> Регистрация</a>
+                            <a href="/signUp"> Регистрация</a>
                         </div>
                         <div class="row justify-content-center" style="padding-top: 20px">
                             <button class="login-button">

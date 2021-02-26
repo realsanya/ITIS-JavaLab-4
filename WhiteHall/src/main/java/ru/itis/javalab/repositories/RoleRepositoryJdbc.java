@@ -48,8 +48,9 @@ public class RoleRepositoryJdbc implements RoleRepository {
     }
 
     @Override
-    public void save(Role role) {
+    public boolean save(Role role) {
         template.query(SQL_CREATE, roleRowMapper, role.getName());
+        return true; //TODO
     }
 
     @Override

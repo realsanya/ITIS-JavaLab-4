@@ -22,6 +22,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @EnableWebMvc
 @Configuration
@@ -38,6 +40,11 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public ExecutorService executorService() {
+        return Executors.newCachedThreadPool();
     }
 
 

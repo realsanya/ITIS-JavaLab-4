@@ -66,12 +66,14 @@ public class TeamMemberRepositoryJdbc implements TeamMemberRepository {
     }
 
     @Override
-    public void save(TeamMember teamMember) {
+    public boolean save(TeamMember teamMember) {
         template.query(SQL_CREATE, teamMemerRowMapper,
                 teamMember.getFirst_name(),
                 teamMember.getLast_name(),
                 teamMember.getRole_id(),
                 teamMember.getText());
+        return true;
+        //TODO
     }
 
     @Override

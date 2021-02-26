@@ -50,8 +50,9 @@ public class ImageRepositoryJdbc implements ImageRepository {
     }
 
     @Override
-    public void save(Image image) {
+    public boolean save(Image image) {
         template.update(SQL_CREATE, image.getType(), image.getPath());
+        return true; //TODO
     }
 
     @Override

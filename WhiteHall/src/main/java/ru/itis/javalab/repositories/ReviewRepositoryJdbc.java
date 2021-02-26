@@ -34,7 +34,7 @@ public class ReviewRepositoryJdbc implements ReviewReposiroty {
     //TODO
     private RowMapper<Review> reviewRowMapper = (row, i) -> Review.builder()
             .id(row.getInt("id"))
-            .user_id(userService.getUserById(row.getInt("user_id")))
+            .user_id(userService.getUserById(row.getLong("user_id")))
             .date(row.getDate("date"))
             .text(row.getString("text"))
             .build();
@@ -52,8 +52,9 @@ public class ReviewRepositoryJdbc implements ReviewReposiroty {
     }
 
     @Override
-    public void save(Review review) {
+    public boolean save(Review review) {
         template.update(SQL_CREATE, review.getUser_id(), review.getDate(), review.getText());
+        return true; //TODO
     }
 
     @Override

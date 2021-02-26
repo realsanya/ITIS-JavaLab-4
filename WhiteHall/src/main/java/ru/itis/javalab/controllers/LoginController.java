@@ -56,7 +56,7 @@ public class LoginController {
 
                 return "redirect:/profile";
             } else {
-                return "redirect:/register";
+                return "/WEB-INF/views/templates/sign_up.ftl";
             }
         } else {
             return "redirect:/login";
