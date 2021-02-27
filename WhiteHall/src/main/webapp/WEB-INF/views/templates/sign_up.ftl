@@ -11,10 +11,10 @@
                 <form action="/signUp" method="post" autocomplete="off">
                     <div class="offset-3 col-md-6">
                         <div class="row justify-content-center">
-                            <input class="login-input" type="text" name="first_name" placeholder="Фамилия"/>
+                            <input class="login-input" type="text" name="firstName" placeholder="Фамилия"/>
                         </div>
                         <div class="row justify-content-center" style="padding-top: 20px">
-                            <input class="login-input" type="text" name="last_name" placeholder="Имя"/>
+                            <input class="login-input" type="text" name="lastName" placeholder="Имя"/>
                         </div>
                         <div class="row justify-content-center" style="padding-top: 20px">
                             <input class="login-input" type="email" name="email" placeholder="Почта"/>

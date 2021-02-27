@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.javalab.dto.UserForm;
+import ru.itis.javalab.models.User;
 import ru.itis.javalab.services.interfaces.SignUpService;
+import ru.itis.javalab.services.interfaces.UserService;
 
 import java.io.IOException;
 
@@ -13,10 +15,12 @@ import java.io.IOException;
 public class SignUpController {
 
     public final SignUpService signUpService;
+    public final UserService userService;
 
     @Autowired
-    public SignUpController(SignUpService signUpService) {
+    public SignUpController(SignUpService signUpService, UserService userService) {
         this.signUpService = signUpService;
+        this.userService = userService;
     }
 
     @RequestMapping("/signUp")
@@ -26,7 +30,15 @@ public class SignUpController {
 
     @PostMapping("/signUp")
     public String register(UserForm userForm) throws IOException {
-        signUpService.signUp(userForm);
+        System.out.println(userForm);
+        if (userService.userIsExist(userForm.getEmail())){
+            return "redirect:/login";
+        }
+        if (signUpService.signUp(userForm)) {
+            return "redirect:/main";
+        } else {
+            return "redirect:/signUp";
+        }
 //        request.setCharacterEncoding("UTF-8");
 //        String firstNameFromRequest = request.getParameter("first_name");
 //        String lastNameFromRequest = request.getParameter("last_name");
@@ -58,6 +70,5 @@ public class SignUpController {
 //        } else {
 //            return "redirect:/login";
 //        }
-        return "redirect:/login";
     }
 }

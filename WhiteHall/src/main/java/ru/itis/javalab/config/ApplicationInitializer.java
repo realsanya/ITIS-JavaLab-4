@@ -21,7 +21,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
         try {
             PropertySource propertySource = new ResourcePropertySource("classpath:application.properties");
-//            appContext.getEnvironment().setActiveProfiles((String) propertySource.getProperty("string.profile"));
+            appContext.getEnvironment().setActiveProfiles((String) propertySource.getProperty("spring.profile"));
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
