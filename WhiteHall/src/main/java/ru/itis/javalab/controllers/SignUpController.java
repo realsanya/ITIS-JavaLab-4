@@ -2,14 +2,17 @@ package ru.itis.javalab.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.javalab.dto.UserForm;
-import ru.itis.javalab.models.User;
 import ru.itis.javalab.services.interfaces.SignUpService;
 import ru.itis.javalab.services.interfaces.UserService;
 
-import java.io.IOException;
+import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Objects;
 
 @Controller
 public class SignUpController {
@@ -24,51 +27,34 @@ public class SignUpController {
     }
 
     @RequestMapping("/signUp")
-    public String getSignUpPage() {
+    public String getSignUpPage(Model model) {
+        model.addAttribute("userForm", new UserForm());
         return "sign_up";
     }
 
     @PostMapping("/signUp")
-    public String register(UserForm userForm) throws IOException {
+    public String register(@Valid UserForm userForm, BindingResult bindingResult, Model model) {
         System.out.println(userForm);
-        if (userService.userIsExist(userForm.getEmail())){
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().stream().anyMatch(error -> {
+                System.out.println(Arrays.toString(error.getCodes()));
+                if (Objects.requireNonNull(error.getCodes())[0].equals("userForm.ValidNames")) {
+                    model.addAttribute("namesErrorMessage", error.getDefaultMessage());
+                }
+                if (Objects.requireNonNull(error.getCodes())[0].equals("userForm.ValidPasswords")) {
+                    model.addAttribute("passwordsErrorMessage", error.getDefaultMessage());
+                }
+                return true;
+            });
+            model.addAttribute("userForm", userForm);
+            return "sign_up";
+        } else if (userService.userIsExist(userForm.getEmail())) {
             return "redirect:/login";
-        }
-        if (signUpService.signUp(userForm)) {
-            return "redirect:/main";
+        } else if (signUpService.signUp(userForm)) {
+            // TODO изменить на профиль
+            return "redirect:/login";
         } else {
             return "redirect:/signUp";
         }
-//        request.setCharacterEncoding("UTF-8");
-//        String firstNameFromRequest = request.getParameter("first_name");
-//        String lastNameFromRequest = request.getParameter("last_name");
-//        String emailFromRequest = request.getParameter("email");
-//        String passwordFromRequest = request.getParameter("password");
-//        String passwordAgainFromRequest = request.getParameter("password_again");
-//
-//        if (Validator.validRegisterData(firstNameFromRequest, lastNameFromRequest, emailFromRequest,
-//                passwordFromRequest, passwordAgainFromRequest)) {
-//            System.out.println("valid");
-//            String hashPassword = passwordEncoder.encode(passwordFromRequest);
-//
-//            if (userService.userIsExist(email)) {
-//                return "redirect:/login";
-//            } else {
-//                System.out.println(firstNameFromRequest + lastNameFromRequest + emailFromRequest + passwordFromRequest);
-//                User user = User.builder()
-//                        .first_name(firstNameFromRequest)
-//                        .last_name(lastNameFromRequest)
-//                        .email(emailFromRequest)
-//                        .password(hashPassword)
-//                        .image_id(imageService.getImage(1))
-//                        .build();
-//                userService.addUser(user);
-//
-//                request.getSession().setAttribute("user", userService.getUser(user.getEmail()));
-//                return "redirect:/profile";
-//            }
-//        } else {
-//            return "redirect:/login";
-//        }
     }
 }
