@@ -1,4 +1,4 @@
-
+<#import "/spring.ftl" as spring>
 <footer>
     <div class="container">
         <div class="row">
@@ -7,10 +7,10 @@
             </div>
             <div class="col-md-3" style="padding-right: 40px; padding-top: 40px">
                 <div class="row" style="padding-top: 10px">
-                    <span class="header-title">Ламповая фотостудия Обнинск</span>
+                    <span class="header-title"><@spring.message 'footer.title'/></span>
                 </div>
                 <div class="row" style="padding-top: 10px">
-                    <span class="header-subtitle">Белый зал - вдохновение на съёмки</span>
+                    <span class="header-subtitle"><@spring.message 'footer.subtitle'/></span>
                 </div>
             </div>
             <div class="offset-1 col-md-3" style="padding-top: 70px">
@@ -28,14 +28,14 @@
                 </div>
                 <div class="row" style="padding-top: 15px">
                     <button class="ml-auto order-call-button"><img src="/static/assets/img/phoneIcon.png"/><span
-                                style="padding-left: 10px">Заказать звонок</span></button>
+                                style="padding-left: 10px"><@spring.message 'header.call'/></span></button>
                 </div>
             </div>
         </div>
         <div class="row" style="padding-bottom: 30px">
             <div class="col-md-3" style="padding-top: 35px"><span
-                        class="footer-policy">Политика конфиденциальности</span></div>
-            <div class="offset-1 col-md-4" style="padding-top: 15px; text-align: center"><span class="footer-text">Свяжитесь с нами через мессенджеры или социальные сети</span>
+                        class="footer-policy"><@spring.message 'footer.policy'/></span></div>
+            <div class="offset-1 col-md-4" style="padding-top: 15px; text-align: center"><span class="footer-text"><@spring.message 'footer.contact'/></span>
             </div>
             <div class="col-md-4" style="padding-top: 15px; text-align: right"><span class="footer-text">г. Обнинск, ул. Борисоглебская, 88, 4 этаж <br/> (ориентир Детский сад “ArtFamily”)</span>
             </div>

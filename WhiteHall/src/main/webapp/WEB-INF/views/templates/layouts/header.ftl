@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring>
 <header class="header">
     <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel"
@@ -36,10 +37,10 @@
                 </div>
                 <div class="col-md-3" style="padding-right: 40px; padding-top: 40px">
                     <div class="row" style="padding-top: 10px">
-                        <span class="header-title">Ламповая фотостудия Обнинск</span>
+                        <span class="header-title"><@spring.message 'header.title'/></span>
                     </div>
                     <div class="row" style="padding-top: 10px">
-                        <span class="header-subtitle">Белый зал - вдохновение на съёмки</span>
+                        <span class="header-subtitle"><@spring.message 'header.subtitle'/></span>
                     </div>
                 </div>
                 <div class="offset-1 col-md-3" style="padding-top: 70px">
@@ -71,30 +72,30 @@
                     <div class="row" style="padding-top: 15px">
                         <button id="write_comment" data-toggle="modal" data-target="#exampleModal"
                                 class="ml-auto order-call-button"><img src="/static/assets/img/phoneIcon.png"/><span
-                                    style="padding-left: 10px">Заказать звонок</span></button>
+                                    style="padding-left: 10px"><@spring.message 'header.call'/></span></button>
                     </div>
                 </div>
             </div>
-            <div class="row" style="padding-top: 30px; padding-bottom: 40px">
-                <div class="col-md-12">
+            <div class="row" style="padding-top: 30px; padding-bottom: 40px;">
+                <div class="col-md-12" style="display: flex; justify-content: space-between;">
                     <#if user??>
-                        <a class="nav-item" href="/main">Главная</a>
-                        <a class="nav-item" href="/advantages">Наши преимущества</a>
-                        <a class="nav-item" href="/services">Услуги</a>
-                        <a class="nav-item" href="/gift">Получить подарок</a>
-                        <a class="nav-item" href="/stages">Этапы работы</a>
-                        <a class="nav-item" href="/reviews">Отзывы</a>
-                        <a class="nav-item" href="/members">Наша команда</a>
-                        <a class="nav-item" href="/profile">Профиль</a>
+                        <a class="nav-item" href="/main"><@spring.message 'header.main'/></a>
+                        <a class="nav-item" href="/advantages"><@spring.message 'header.advantages'/></a>
+                        <a class="nav-item" href="/services"><@spring.message 'header.services'/></a>
+                        <a class="nav-item" href="/gift"><@spring.message 'header.gift'/></a>
+                        <a class="nav-item" href="/stages"><@spring.message 'header.stages'/></a>
+                        <a class="nav-item" href="/reviews"><@spring.message 'header.reviews'/></a>
+                        <a class="nav-item" href="/members"><@spring.message 'header.members'/></a>
+                        <a class="nav-item" href="/profile"><@spring.message 'header.profile'/></a>
                     <#else>
-                        <a class="nav-item" href="/main">Главная</a>
-                        <a class="nav-item" href="/advantages">Наши преимущества</a>
-                        <a class="nav-item" href="/services">Услуги</a>
-                        <a class="nav-item" href="/gift">Получить подарок</a>
-                        <a class="nav-item" href="/stages">Этапы работы</a>
-                        <a class="nav-item" href="/reviews">Отзывы</a>
-                        <a class="nav-item" href="/members">Наша команда</a>
-                        <a class="nav-item" href="/login">Войти</a>
+                        <a class="nav-item" href="/main"><@spring.message 'header.main'/></a>
+                        <a class="nav-item" href="/advantages"><@spring.message 'header.advantages'/></a>
+                        <a class="nav-item" href="/services"><@spring.message 'header.services'/></a>
+                        <a class="nav-item" href="/gift"><@spring.message 'header.gift'/></a>
+                        <a class="nav-item" href="/stages"><@spring.message 'header.stages'/></a>
+                        <a class="nav-item" href="/reviews"><@spring.message 'header.reviews'/></a>
+                        <a class="nav-item" href="/members"><@spring.message 'header.members'/></a>
+                        <a class="nav-item" href="/login"><@spring.message 'header.login'/></a>
                     </#if>
                 </div>
             </div>

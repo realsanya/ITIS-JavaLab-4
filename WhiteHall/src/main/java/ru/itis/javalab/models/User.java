@@ -13,11 +13,11 @@ import java.util.UUID;
 @Builder
 public class User {
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    private Image image_id;
+    private Image imageId;
     private UUID confirmCode;
 
     @Builder.Default

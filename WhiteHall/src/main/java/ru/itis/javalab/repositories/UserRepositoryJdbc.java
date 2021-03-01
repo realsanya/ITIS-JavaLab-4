@@ -38,20 +38,21 @@ public class UserRepositoryJdbc implements UserRepository {
 
     private RowMapper<User> userRowMapper = (row, i) -> User.builder()
             .id(row.getLong("id"))
-            .first_name(row.getString("first_name"))
-            .last_name(row.getString("last_name"))
+            .firstName(row.getString("first_name"))
+            .lastName(row.getString("last_name"))
             .email(row.getString("email"))
             .password(row.getString("password"))
-            .image_id(imageService.getImage(row.getInt("image_id")))
+            .imageId(imageService.getImage(row.getInt("image_id")))
             .build();
 
 
     @Override
     public boolean save(User user) {
+        // TODO
         try {
             template.update(SQL_SAVE,
-                    user.getFirst_name(),
-                    user.getLast_name(),
+                    user.getFirstName(),
+                    user.getLastName(),
                     user.getEmail(),
                     user.getPassword(),
                     user.getConfirmCode().toString(),

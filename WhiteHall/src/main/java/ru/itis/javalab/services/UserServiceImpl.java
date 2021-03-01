@@ -33,11 +33,11 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
         userRepository.save(
                 User.builder()
-                        .first_name(user.getFirst_name())
-                        .last_name(user.getLast_name())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
                         .email(user.getEmail())
                         .password(user.getPassword())
-                        .image_id(user.getImage_id())
+                        .imageId(user.getImageId())
                         .build()
         );
     }
