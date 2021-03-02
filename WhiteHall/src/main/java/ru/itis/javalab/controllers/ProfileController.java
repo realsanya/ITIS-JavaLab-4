@@ -36,7 +36,7 @@ public class ProfileController {
     public String getProfilePage(HttpServletRequest request, Model model) {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            model.addAttribute("image", imageService.getImage(user.getImage_id().getId()));
+            model.addAttribute("image", imageService.getImage(user.getImageId().getId()));
             model.addAttribute("user", user);
             return "profile";
         }
@@ -55,7 +55,7 @@ public class ProfileController {
                 .path(path).build();
         imageService.addImage(image);
 
-        user.setImage_id(imageService.getImageByPath(path));
+        user.setImageId(imageService.getImageByPath(path));
         userService.addUser(user);
 
         IOUtils.copyLarge(

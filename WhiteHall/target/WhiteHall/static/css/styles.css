@@ -1,0 +1,254 @@
+.gift-text {
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: #484D50;
+}
+
+.gift-text-second {
+    font-family: Playfair Display, serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 35px;
+    color: #6F99E8;
+}
+
+.gift-button {
+    width: 326px;
+    height: 71px;
+    border: 1px none;
+    background: linear-gradient(180deg, #A7BFE8 0%, #84A8E8 60.94%, #6190E8 100%);
+    box-shadow: 0px 20px 18px rgba(97, 144, 232, 0.2), 0px 5px 0px #5985D6, inset 0px 3px 6px #ABC3ED, inset 0px -5px 10px #769DE8;
+    border-radius: 200px;
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.stages-title {
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #484D50;
+}
+
+.stages-text {
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    color: #444444;
+}
+
+
+.login-button {
+    width: 200px;
+    height: 50px;
+    border: 1px none;
+    background: linear-gradient(180deg, #A7BFE8 0%, #84A8E8 60.94%, #6190E8 100%);
+    box-shadow: 0px 20px 18px rgba(97, 144, 232, 0.2), 0px 5px 0px #5985D6, inset 0px 3px 6px #ABC3ED, inset 0px -5px 10px #769DE8;
+    border-radius: 200px;
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.login-input {
+    width: 350px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #769DE8;
+    padding-left: 10px;
+    background: linear-gradient(180deg, #A7BFE8 0%, #84A8E8 60.94%, #6190E8 100%);
+    box-shadow: 0px 20px 18px rgba(97, 144, 232, 0.2), 0px 5px 0px #5985D6, inset 0px 3px 6px #ABC3ED, inset 0px -5px 10px #769DE8;
+}
+
+.search-input {
+    width: 500px;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 10px;
+    background: #ffffff;
+    border: 1px solid #769DE8;
+    box-shadow: 0px 2px 3px #ABC3ED, 0px 2px 5px #769DE8;
+}
+
+.search-input::placeholder {
+    color: #484D50;
+}
+
+.login-input::placeholder {
+    padding-left: 10px;
+}
+
+.register-button {
+    width: 300px;
+    height: 50px;
+    border: 1px none;
+    background: linear-gradient(180deg, #A7BFE8 0%, #84A8E8 60.94%, #6190E8 100%);
+    box-shadow: 0px 20px 18px rgba(97, 144, 232, 0.2), 0px 5px 0px #5985D6, inset 0px 3px 6px #ABC3ED, inset 0px -5px 10px #769DE8;
+    border-radius: 200px;
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.card {
+    border: none;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 15px #F3F3F3;
+    border-radius: 10px;
+}
+
+.card-img-top {
+    padding-top: 5px;
+    border-radius: 10px;
+}
+
+.card-title {
+    font-family: Open Sans, serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #484D50;
+    text-align: center;
+}
+
+.card-text {
+    font-family: Playfair Display, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 86px;
+    color: #DBDBDB;
+    text-align: center;
+}
+
+
+.services-title {
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    color: #484D50;
+}
+
+.services-subtitle {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 25px;
+    color: #DBDBDB;
+}
+
+.services-price {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 50px;
+}
+
+.services-economic {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 50px;
+    color: #6190E8;
+}
+
+.services-button {
+    width: 150px;
+    height: 50px;
+    background: linear-gradient(180deg, #A7BFE8 0%, #84A8E8 60.94%, #6190E8 100%);
+    box-shadow: 0px 20px 18px rgba(97, 144, 232, 0.2), 0px 3px 0px #5985D6, inset 0px 3px 6px #ABC3ED, inset 0px -5px 10px #769DE8;
+    border-radius: 200px;
+    border: 1px none;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.services-col {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: left;
+    color: #484D50;
+}
+
+td {
+    text-align: center;
+    line-height: 50px;
+}
+
+table {
+    box-shadow: 0px 11px 36px 7px #F1F1F1;
+    border-radius: 10px;
+}
+
+.reviews-card {
+    box-shadow: 0px 11px 36px 7px #F1F1F1;
+    border-radius: 10px;
+    background-color: #fefefe;
+}
+
+.reviews-card-body {
+    width: 600px;
+    text-align: center;
+}
+
+.reviews-card-title {
+    font-family: Playfair Display, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    font-style: italic;
+    color: #484D50;
+}
+
+.reviews-card-text {
+    font-size: 18px;
+}
+
+.profile-card-title {
+    font-family: Playfair Display, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 36px;
+    color: #484D50;
+}
+
+.order-card {
+    box-shadow: 0px 11px 36px 7px #F1F1F1;
+    border-radius: 10px;
+    background-color: #fefefe;
+}
+
+.order-card-body {
+    width: 600px;
+    text-align: center;
+}
+
+.order-card-title {
+    font-family: Playfair Display, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: left;
+    color: #484D50;
+}
+
+
+
