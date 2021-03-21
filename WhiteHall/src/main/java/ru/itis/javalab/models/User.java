@@ -5,23 +5,30 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "account")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique=true)
     private String email;
     private String password;
-    private Image imageId;
+//    @JoinColumn(name = "image")
+//    private Image imageId;
     private UUID confirmCode;
 
-    @Builder.Default
-    private State state = State.NOT_CONFIRMED;
+    @Enumerated(value = EnumType.STRING)
+    private State state;
 
     public enum State {
         CONFIRMED("CONFIRMED"),

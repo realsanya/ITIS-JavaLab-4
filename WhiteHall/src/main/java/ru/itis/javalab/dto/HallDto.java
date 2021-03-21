@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class HallDto {
-    private Integer id;
+    private Long id;
     private String name;
     private Integer cost;
 

@@ -20,6 +20,6 @@ public class PasswordsValidator implements ConstraintValidator<ValidPasswords, O
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
         Object password = new BeanWrapperImpl(o).getPropertyValue(passwordPropertyName);
         Object passwordAgain = new BeanWrapperImpl(o).getPropertyValue(passwordAgainPropertyName);
-        return password == passwordAgain;
+        return password.equals(passwordAgain);
     }
 }

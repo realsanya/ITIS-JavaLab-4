@@ -2,15 +2,21 @@ package ru.itis.javalab.models;
 
 import lombok.*;
 
+import javax.persistence.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "team_member")
 public class TeamMember {
-    private Integer id;
-    private String first_name;
-    private String last_name;
-    private Role role_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String firstName;
+    private String lastName;
+    @ManyToOne
+    private Role roleId;
     private String text;
-
 }

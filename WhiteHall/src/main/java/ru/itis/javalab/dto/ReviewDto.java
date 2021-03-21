@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class ReviewDto {
-    private Integer id;
-    private User user_id;
+    private Long id;
+    private User userId;
     private Date date;
     private String text;
 
@@ -27,7 +27,7 @@ public class ReviewDto {
         }
         return ReviewDto.builder()
                 .id(review.getId())
-                .user_id(review.getUser_id())
+                .userId(review.getUserId())
                 .date(review.getDate())
                 .text(review.getText())
                 .build();

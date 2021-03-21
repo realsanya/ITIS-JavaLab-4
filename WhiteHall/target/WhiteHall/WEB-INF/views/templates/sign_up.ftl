@@ -31,8 +31,7 @@
 <#--                            <input class="login-input" type="text" name="firstName"-->
 <#--                                   placeholder="<@spring.message 'sign_up_page.registration.first_name.placeholder'/>"/>-->
                         </div>
-                        <@spring.showEr
-                        rors "<br>" "error"/>
+                        <@spring.showErrors "<br>" "error"/>
                         <div class="row justify-content-center" style="padding-top: 20px">
                             <#assign lastNamePlaceholder><@spring.message 'sign_up_page.registration.last_name.placeholder'/></#assign>
                             <@spring.formInput "userForm.lastName" "class='login-input' placeholder='" + lastNamePlaceholder + "'" />

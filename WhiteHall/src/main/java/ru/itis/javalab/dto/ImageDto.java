@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class ImageDto {
-    private Integer id;
+    private Long id;
     private String type;
     private String path;
 

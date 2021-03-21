@@ -2,12 +2,8 @@ package ru.itis.javalab.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.itis.javalab.dto.UserDto;
 import ru.itis.javalab.models.User;
-import ru.itis.javalab.repositories.interfaces.UserRepository;
-import ru.itis.javalab.services.interfaces.UserService;
-
-import java.util.List;
+import ru.itis.javalab.repositories.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,36 +15,17 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    public User getUser(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
     @Override
-    public List<UserDto> getAllUsers() {
-        return UserDto.from(userRepository.findAll());
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
     public boolean userIsExist(String email) {
-        return userRepository.findByEmail(email) != null;
-    }
-
-    @Override
-    public void addUser(User user) {
-        userRepository.save(
-                User.builder()
-                        .firstName(user.getFirstName())
-                        .lastName(user.getLastName())
-                        .email(user.getEmail())
-                        .password(user.getPassword())
-                        .imageId(user.getImageId())
-                        .build()
-        );
-    }
-
-    @Override
-    public User getUser(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id);
+        return userRepository.findUserByEmail(email) != null;
     }
 }

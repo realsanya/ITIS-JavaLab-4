@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.javalab.models.Image;
 import ru.itis.javalab.models.User;
-import ru.itis.javalab.services.interfaces.ImageService;
-import ru.itis.javalab.services.interfaces.UserService;
+import ru.itis.javalab.services.ImageService;
+import ru.itis.javalab.services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-@Controller
+//@Controller
 public class ProfileController {
 
     private final String UPLOAD_DIR = "C:\\Users\\Asus\\Desktop\\ITISPROJECTS\\Donut\\Donuts\\PuffyDonut\\src\\main\\webapp\\assets\\img";
@@ -36,7 +36,7 @@ public class ProfileController {
     public String getProfilePage(HttpServletRequest request, Model model) {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            model.addAttribute("image", imageService.getImage(user.getImageId().getId()));
+//            model.addAttribute("image", imageService.getImageById(user.getImageId().getId()));
             model.addAttribute("user", user);
             return "profile";
         }
@@ -55,8 +55,8 @@ public class ProfileController {
                 .path(path).build();
         imageService.addImage(image);
 
-        user.setImageId(imageService.getImageByPath(path));
-        userService.addUser(user);
+//        user.setImageId(imageService.getImageByPath(path));
+        userService.save(user);
 
         IOUtils.copyLarge(
                 file.getInputStream(),
