@@ -22,7 +22,7 @@ public class RoleDto {
             return null;
         }
         return RoleDto.builder()
-                .id(role.getRole_id())
+                .id(role.getRoleId())
                 .name(role.getName())
                 .build();
     }

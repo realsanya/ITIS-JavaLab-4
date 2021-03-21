@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.javalab.models.TeamMember;
-import ru.itis.javalab.services.interfaces.TeamMemberService;
+import ru.itis.javalab.services.TeamMemberService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,13 @@ public class MembersController {
     public String getMembersPage(@RequestParam(value = "page", required = false) Integer page,
                                  @RequestParam(value = "size", required = false) Integer size,
                                  Model model) {
-        if (page != null && size != null) {
-            System.out.println(teamMemberService.getAllMembers(page, size));
-            model.addAttribute("members", teamMemberService.getAllMembers(page, size));
-        } else {
+//        if (page != null && size != null) {
+//            System.out.println(teamMemberService.getAllMembers(page, size));
+//            model.addAttribute("members", teamMemberService.getAllMembers(page, size));
+//        } else {
             System.out.println(teamMemberService.getAllMembers());
             model.addAttribute("members", teamMemberService.getAllMembers());
-        }
+//        }
 
         return "members";
     }
@@ -54,7 +54,7 @@ public class MembersController {
         List<TeamMember> members = teamMemberService.getAllMembers();
         List<String> membersName = new ArrayList<>();
         for (TeamMember teamMember: members) {
-            membersName.add(teamMember.getFirst_name());
+            membersName.add(teamMember.getFirstName());
         }
         return membersName;
     }

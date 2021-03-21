@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.javalab.models.User;
-import ru.itis.javalab.services.interfaces.UserService;
+import ru.itis.javalab.services.UserService;
 import ru.itis.javalab.utils.Validator;
 
 import javax.servlet.http.Cookie;
@@ -18,7 +18,7 @@ import java.io.IOException;
 @Controller
 public class LoginController {
 
-    public final  PasswordEncoder passwordEncoder;
+    public final PasswordEncoder passwordEncoder;
     public final UserService userService;
 
     @Autowired
@@ -39,6 +39,7 @@ public class LoginController {
                             @RequestParam String password) throws IOException {
         String emailFromRequest = request.getParameter("email");
         String passwordFromRequest = request.getParameter("password");
+        System.out.println(emailFromRequest + passwordFromRequest);
 
         if (Validator.validLoginData(emailFromRequest, passwordFromRequest)) {
             User user = userService.getUser(emailFromRequest);
@@ -56,7 +57,7 @@ public class LoginController {
 
                 return "redirect:/profile";
             } else {
-                return "/WEB-INF/views/templates/sign_up.ftl";
+                return "redirect:/signUp";
             }
         } else {
             return "redirect:/login";

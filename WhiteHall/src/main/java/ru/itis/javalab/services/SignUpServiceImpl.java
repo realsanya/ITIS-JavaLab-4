@@ -6,10 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itis.javalab.dto.UserForm;
 import ru.itis.javalab.models.Email;
-import ru.itis.javalab.models.Image;
 import ru.itis.javalab.models.User;
-import ru.itis.javalab.repositories.interfaces.UserRepository;
-import ru.itis.javalab.services.interfaces.SignUpService;
+import ru.itis.javalab.repositories.UserRepository;
 import ru.itis.javalab.utils.EmailUtil;
 import ru.itis.javalab.utils.MailsGenerator;
 
@@ -44,25 +42,22 @@ public class SignUpServiceImpl implements SignUpService {
     public boolean signUp(UserForm form) {
         String hash = passwordEncoder.encode(form.getPassword());
         User newUser = User.builder()
-                .first_name(form.getFirstName())
-                .last_name(form.getLastName())
+                .firstName(form.getFirstName())
+                .lastName(form.getLastName())
                 .email(form.getEmail())
                 .password(hash)
                 .confirmCode(UUID.randomUUID())
                 .build();
-        if (userRepository.save(newUser)) {
-            String confirmMail = mailsGenerator.getMailForConfirm(serverUrl, newUser.getConfirmCode().toString());
-            Email email = Email.builder()
-                    .from(from)
-                    .to(newUser.getEmail())
-                    .subject("Регистрация")
-                    .text(confirmMail)
-                    .build();
-            emailUtil.sendMail(email);
-            return true;
-        } else {
-            return false;
-        }
+        userRepository.save(newUser);
+        String confirmMail = mailsGenerator.getMailForConfirm(serverUrl, newUser.getConfirmCode().toString());
+        Email email = Email.builder()
+                .from(from)
+                .to(newUser.getEmail())
+                .subject("Регистрация")
+                .text(confirmMail)
+                .build();
+        emailUtil.sendMail(email);
+        return true; //TODO
     }
 }
 

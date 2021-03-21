@@ -7,12 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.javalab.dto.UserForm;
-import ru.itis.javalab.services.interfaces.SignUpService;
-import ru.itis.javalab.services.interfaces.UserService;
+import ru.itis.javalab.services.SignUpService;
+import ru.itis.javalab.services.UserService;
 
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Objects;
+
 
 @Controller
 public class SignUpController {

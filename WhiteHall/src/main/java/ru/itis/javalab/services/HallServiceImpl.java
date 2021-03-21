@@ -3,8 +3,7 @@ package ru.itis.javalab.services;
 import org.springframework.stereotype.Service;
 import ru.itis.javalab.dto.HallDto;
 import ru.itis.javalab.models.Hall;
-import ru.itis.javalab.repositories.interfaces.HallRepository;
-import ru.itis.javalab.services.interfaces.HallService;
+import ru.itis.javalab.repositories.HallRepository;
 
 import java.util.List;
 
@@ -27,18 +26,4 @@ public class HallServiceImpl implements HallService {
         return HallDto.from(hallRepository.findAllByCost(cost));
     }
 
-    @Override
-    public void addHall(Hall hall) {
-        hallRepository.save(
-                Hall.builder()
-                        .name(hall.getName())
-                        .cost(hall.getCost())
-                        .build()
-        );
-    }
-
-    @Override
-    public HallDto getHall(Integer id) {
-        return HallDto.from(hallRepository.findById(id));
-    }
 }

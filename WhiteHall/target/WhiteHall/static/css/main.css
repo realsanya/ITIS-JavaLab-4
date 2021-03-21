@@ -1,0 +1,173 @@
+body {
+    font-family: ' Open Sans', sans-serif;
+    font-style: normal;
+    color: #484D50;
+    overflow-x: hidden;
+}
+
+
+header, footer {
+    background-color: #ffffff;
+}
+
+h4 {
+    font-style: normal;
+    font-weight: bold;
+    color: #484D50;
+}
+
+h5 {
+    font-family: Playfair Display, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 60px;
+    letter-spacing: -0.005em;
+    color: #FFFFFF
+}
+
+.nav-item {
+    color: #484D50;
+}
+
+.nav-item:active{
+    color: #484D50;
+}
+
+.main-subtitle {
+    font-family: Playfair Display, serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 85px;
+    letter-spacing: -0.005em;
+    color: #FFFFFF;
+}
+
+.main-second-subtitle {
+    font-family: 'Open Sans', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding-top: 50px;
+}
+
+.main-buttons {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    text-align: left;
+}
+
+.header-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.header-subtitle {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.header-icon-link {
+    padding: 0 5px;
+}
+
+.phone {
+    color: #484D50 !important;
+    padding-right: 30px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.phone:hover {
+    color: #6F99E8 !important;
+}
+
+.order-call-button {
+    border-radius: 100px;
+    height: 45px;
+    width: 215px;
+    border: 1px none;
+    text-align: center;
+    background: linear-gradient(270deg, #F6F5F6 100%, #ECEBEF 100%);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.order-call-button:hover {
+    background: #DFDFDF;
+}
+
+.nav-item {
+    text-align: center;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: inherit;
+}
+
+.nav-item:hover {
+    color: #6F99E8 !important;
+    cursor: pointer;
+}
+
+.title {
+    font-family: Playfair Display, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    color: #484D50;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.footer-policy {
+    font-weight: normal;
+    font-size: 14px;
+    text-decoration-line: underline;
+    color: #DBDBDB;
+}
+
+.footer-policy:hover {
+    cursor: pointer;
+    color: #6F99E8;
+}
+
+.footer-text {
+    font-weight: 400;
+    font-size: 14px;
+    color: #393A47;
+}
+
+.reservation-button {
+    width: 326px;
+    height: 71px;
+    border: 1px none;
+    background: linear-gradient(180deg, #FAFAFA 0%, #F0EFF2 78.12%, #ECEBEF 100%);
+    box-shadow: 0px 22px 12px rgba(247, 246, 248, 0.2), 0px 5px 0px #DFDFDF, inset 0px 3px 6px #FAFAFA, inset 0px -5px 10px #F1F1F1;
+    border-radius: 200px;
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #484D50;
+    text-align: center;
+}
+
+.modal-title {
+    font-family: Open Sans, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    color: #484D50 !important;
+}
+
+.modal-body {
+    border: 1px none;
+}
+
+.btn-primary{
+    background-color: #484D50;
+}
+
+

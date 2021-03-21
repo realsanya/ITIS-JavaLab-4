@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class TeamMemberDto {
-    private Integer id;
-    private String first_name;
-    private String last_name;
+    private Long id;
+    private String firstName;
+    private String lastName;
     private Role role;
     private String text;
 
@@ -27,9 +27,9 @@ public class TeamMemberDto {
         }
         return TeamMemberDto.builder()
                 .id(member.getId())
-                .first_name(member.getFirst_name())
-                .last_name(member.getLast_name())
-                .role(member.getRole_id())
+                .firstName(member.getFirstName())
+                .lastName(member.getLastName())
+                .role(member.getRoleId())
                 .text(member.getText())
                 .build();
     }

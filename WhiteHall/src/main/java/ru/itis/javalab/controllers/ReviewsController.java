@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.itis.javalab.services.interfaces.ReviewService;
+import ru.itis.javalab.services.ReviewService;
 
 @Controller
 public class ReviewsController {
@@ -13,7 +13,7 @@ public class ReviewsController {
     private final ReviewService reviewService;
 
     @Autowired
-    public ReviewsController(ReviewService reviewService){
+    public ReviewsController(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
 
