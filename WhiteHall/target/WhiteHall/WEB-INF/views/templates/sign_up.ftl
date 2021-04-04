@@ -14,7 +14,6 @@
             <div class="row">
                 <div class="offset-3 col-md-6 title"><@spring.message 'sign_up_page.registration.title'/></div>
             </div>
-
             <@spring.bind "userForm"/>
             <#if namesErrorMessage??>
                 <p class="error" style="display: flex; justify-content: center; padding-right: 55px;">${namesErrorMessage}</p>
@@ -24,6 +23,7 @@
             </#if>
             <div class="container" style="padding-top: 40px; padding-bottom: 100px">
                 <form action="/signUp" method="post" autocomplete="off">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="offset-3 col-md-6">
                         <div class="row justify-content-center">
                             <#assign firstNamePlaceholder><@spring.message 'sign_up_page.registration.first_name.placeholder'/></#assign>
