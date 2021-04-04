@@ -45,8 +45,10 @@ public class SignUpServiceImpl implements SignUpService {
                 .firstName(form.getFirstName())
                 .lastName(form.getLastName())
                 .email(form.getEmail())
-                .password(hash)
+                .hashPassword(hash)
                 .confirmCode(UUID.randomUUID())
+                .role(User.Role.USER)
+                .state(User.State.ACTIVE)
                 .build();
         userRepository.save(newUser);
         String confirmMail = mailsGenerator.getMailForConfirm(serverUrl, newUser.getConfirmCode().toString());

@@ -2,10 +2,7 @@ package ru.itis.javalab.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -15,6 +12,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -25,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+import ru.itis.javalab.security.config.SecurityConfig;
 
 import javax.sql.DataSource;
 import java.util.Objects;
@@ -34,6 +33,7 @@ import java.util.concurrent.Executors;
 
 @EnableWebMvc
 @EnableJpaRepositories("ru.itis.javalab.repositories")
+@Import(SecurityConfig.class)
 @EnableTransactionManagement
 @Configuration
 @PropertySource("classpath:application.properties")
@@ -112,6 +112,11 @@ public class ApplicationConfig implements WebMvcConfigurer {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.import_files_sql_extractor", "org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor");
+        properties.setProperty("hibernate.connection.charSet", "UTF-8");
+        properties.setProperty("hibernate.hbm2ddl.import_files", "schema.sql");
+        properties.setProperty("connection.autocommit", "true");
         return properties;
     }
 
@@ -123,7 +128,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
         hikariConfig.setMaximumPoolSize(Integer.parseInt(Objects.requireNonNull(environment.getProperty("db.hikari.max-pool-size"))));
         hikariConfig.setUsername(environment.getProperty("db.username"));
         hikariConfig.setPassword(environment.getProperty("db.password"));
-//        hikariConfig.setDriverClassName(environment.getProperty("db.driver.classname"));
+        hikariConfig.setDriverClassName(environment.getProperty("db.driver.classname"));
         return hikariConfig;
     }
 

@@ -78,7 +78,7 @@
             </div>
             <div class="row" style="padding-top: 30px; padding-bottom: 40px;">
                 <div class="col-md-12" style="display: flex; justify-content: space-between;">
-                    <#if user??>
+<#--                    <#if user??>-->
                         <a class="nav-item" href="/main"><@spring.message 'header.main'/></a>
                         <a class="nav-item" href="/advantages"><@spring.message 'header.advantages'/></a>
                         <a class="nav-item" href="/services"><@spring.message 'header.services'/></a>
@@ -87,16 +87,16 @@
                         <a class="nav-item" href="/reviews"><@spring.message 'header.reviews'/></a>
                         <a class="nav-item" href="/members"><@spring.message 'header.members'/></a>
                         <a class="nav-item" href="/profile"><@spring.message 'header.profile'/></a>
-                    <#else>
-                        <a class="nav-item" href="/main"><@spring.message 'header.main'/></a>
-                        <a class="nav-item" href="/advantages"><@spring.message 'header.advantages'/></a>
-                        <a class="nav-item" href="/services"><@spring.message 'header.services'/></a>
-                        <a class="nav-item" href="/gift"><@spring.message 'header.gift'/></a>
-                        <a class="nav-item" href="/stages"><@spring.message 'header.stages'/></a>
-                        <a class="nav-item" href="/reviews"><@spring.message 'header.reviews'/></a>
-                        <a class="nav-item" href="/members"><@spring.message 'header.members'/></a>
-                        <a class="nav-item" href="/login"><@spring.message 'header.login'/></a>
-                    </#if>
+<#--                    <#else>-->
+<#--                        <a class="nav-item" href="/main"><@spring.message 'header.main'/></a>-->
+<#--                        <a class="nav-item" href="/advantages"><@spring.message 'header.advantages'/></a>-->
+<#--                        <a class="nav-item" href="/services"><@spring.message 'header.services'/></a>-->
+<#--                        <a class="nav-item" href="/gift"><@spring.message 'header.gift'/></a>-->
+<#--                        <a class="nav-item" href="/stages"><@spring.message 'header.stages'/></a>-->
+<#--                        <a class="nav-item" href="/reviews"><@spring.message 'header.reviews'/></a>-->
+<#--                        <a class="nav-item" href="/members"><@spring.message 'header.members'/></a>-->
+<#--                        <a class="nav-item" href="/signIn"><@spring.message 'header.login'/></a>-->
+<#--                    </#if>-->
                 </div>
             </div>
         </div>
