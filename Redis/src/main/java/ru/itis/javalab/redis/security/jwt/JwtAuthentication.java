@@ -3,6 +3,8 @@ package ru.itis.javalab.redis.security.jwt;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import ru.itis.javalab.redis.security.details.UserDetailsImpl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -11,35 +13,40 @@ public class JwtAuthentication implements Authentication {
 
     private boolean isAuthenticated;
     private final String token;
-    private String authority;
+    private UserDetailsImpl userDetails;
+
 
     public JwtAuthentication(String token) {
         this.token = token;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = (UserDetailsImpl) userDetails;
     }
+
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(authority));
+        return userDetails.getAuthorities();
     }
 
     @Override
     public Object getCredentials() {
-        return null;
+        return userDetails.getPassword();
     }
 
     @Override
     public Object getDetails() {
-        return null;
+        return userDetails;
     }
 
     @Override
     public Object getPrincipal() {
-        return null;
+        if (userDetails != null) {
+            return userDetails.getUser();
+        } else return null;
     }
 
     @Override

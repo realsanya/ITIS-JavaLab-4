@@ -7,5 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class TokenDto {
-    private String token;
+    private String access;
+    private String refresh;
 }

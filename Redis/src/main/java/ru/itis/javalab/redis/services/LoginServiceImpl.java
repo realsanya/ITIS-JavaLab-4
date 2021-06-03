@@ -1,56 +1,58 @@
 package ru.itis.javalab.redis.services;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itis.javalab.redis.dto.EmailPasswordDto;
 import ru.itis.javalab.redis.dto.TokenDto;
+import ru.itis.javalab.redis.models.Token;
 import ru.itis.javalab.redis.models.User;
 import ru.itis.javalab.redis.redis.services.RedisUsersService;
+import ru.itis.javalab.redis.repositories.TokenRepository;
 import ru.itis.javalab.redis.repositories.UsersRepository;
 import ru.itis.javalab.redis.services.interfaces.LoginService;
+import ru.itis.javalab.redis.services.interfaces.TokenService;
+import ru.itis.javalab.redis.utils.JwtGenerator;
 
-import java.time.LocalDateTime;
-import java.util.function.Supplier;
+import java.util.Optional;
 
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    private final Algorithm algorithm;
+    private final JwtGenerator jwtGenerator;
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
     private final RedisUsersService redisUsersService;
+    private final TokenRepository tokenRepository;
+    private final TokenService tokenService;
 
     @Autowired
-    public LoginServiceImpl(Algorithm algorithm, UsersRepository usersRepository, PasswordEncoder passwordEncoder, RedisUsersService redisUsersService) {
-        this.algorithm = algorithm;
+    public LoginServiceImpl(JwtGenerator jwtGenerator, UsersRepository usersRepository, PasswordEncoder passwordEncoder, RedisUsersService redisUsersService, TokenRepository tokenRepository, TokenService tokenService) {
+        this.jwtGenerator = jwtGenerator;
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.redisUsersService = redisUsersService;
+        this.tokenRepository = tokenRepository;
+        this.tokenService = tokenService;
     }
 
     @Override
-    public TokenDto login(EmailPasswordDto emailPassword) throws Throwable {
-        User user = usersRepository.findByEmail(emailPassword.getEmail())
-                .orElseThrow((Supplier<Throwable>) () -> new UsernameNotFoundException("User not found"));
-        System.out.println(user);
-        if (passwordEncoder.matches(emailPassword.getPassword(), user.getHashPassword())) {
-            String token = JWT.create()
-                    .withSubject(user.getId().toString())
-                    .withClaim("role", user.getRole().toString())
-                    .withClaim("state", user.getState().toString())
-                    .withClaim("email", user.getEmail())
-                    .withClaim("createdAt", LocalDateTime.now().toString())
-                    .sign(algorithm);
-            redisUsersService.addTokenToUser(user, token);
-            return TokenDto.builder()
-                    .token(token)
-                    .build();
-        } else {
-            throw new UsernameNotFoundException("Invalid username or password");
+    public Optional<TokenDto> login(EmailPasswordDto emailPassword) throws Throwable {
+        Optional<User> user = usersRepository.findByEmail(emailPassword.getEmail());
+
+        if (user.isPresent() && passwordEncoder.matches(emailPassword.getPassword(), user.get().getHashPassword())) {
+            Token refreshToken = tokenService.createRefreshToken(user.get().getId());
+
+            String token = jwtGenerator.generateToken(user.get());
+            System.out.println(token);
+            redisUsersService.addTokenToUser(user.get(), token);
+
+            return Optional.of(TokenDto.builder()
+                    .access(token)
+                    .refresh(refreshToken.getToken())
+                    .build());
         }
+        return Optional.empty();
     }
+
 }

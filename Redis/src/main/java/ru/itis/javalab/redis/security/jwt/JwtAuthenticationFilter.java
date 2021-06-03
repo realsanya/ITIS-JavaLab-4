@@ -15,15 +15,18 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    private final JwtBlacklistService service;
+
     @Autowired
-    private JwtBlacklistService service;
+    public JwtAuthenticationFilter(JwtBlacklistService service) {
+        this.service = service;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String token = httpServletRequest.getHeader("Authorization");
 
         if (token != null) {
-
             if (service.exists(token)) {
                 httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 return;

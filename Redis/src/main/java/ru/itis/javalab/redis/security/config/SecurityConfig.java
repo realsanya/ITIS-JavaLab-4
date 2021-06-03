@@ -31,10 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAt(jwtLogoutFilter, LogoutFilter.class)
                 .authorizeRequests()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/teachers").hasAuthority("ADMIN")
                 .antMatchers("/logout").hasAnyAuthority()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/hello").permitAll()
                 .and()
                 .sessionManagement().disable();
     }

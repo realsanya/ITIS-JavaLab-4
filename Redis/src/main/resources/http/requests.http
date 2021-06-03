@@ -9,7 +9,8 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/teachers
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiY3JlYXRlZEF0IjoiMjAyMS0wNC0wOVQxNTozMDoyNS42MzciLCJyb2xlIjoiQURNSU4iLCJzdGF0ZSI6IkFDVElWRSIsImVtYWlsIjoic2lkaWtvdi5tYXJzZWxAZ21haWwuY29tIn0.ADgjiCC3psxg-CxjO2zAMXryiRXpbQ2mH13FPylnZrk
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MiwiZW1haWwiOiJzaWRpa292Lm1hcnNlbEBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2MjI1MzQ2MzF9.qpGbQNfvdLzbfNM4v2XdPfRYNmNBTDP2N7xpM9G_MwuZDpC0FvXsSYAy_GMAjp0PU-xNNvT9jgoDdvs8ANvKww
+
 ###
 
 GET http://localhost:8080/logout
